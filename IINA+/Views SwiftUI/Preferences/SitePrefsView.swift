@@ -98,8 +98,8 @@ struct SitePrefsView: View {
             Divider()
                 .padding(EdgeInsets.init(top: 12, leading: -8, bottom: 12, trailing: -8))
         
-            Grid(alignment: .leadingFirstTextBaseline) {
-                GridRow {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .firstTextBaseline) {
                     LocalizedText("QVl-54-yko.title", tableName: .preferences)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
@@ -112,7 +112,7 @@ struct SitePrefsView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                GridRow(alignment: .center) {
+                HStack(alignment: .center) {
                     LocalizedText("iTL-J0-MpL.title", tableName: .preferences)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
@@ -121,7 +121,7 @@ struct SitePrefsView: View {
                     .toggleStyle(.checkbox)
                 }
                 
-                GridRow(alignment: .center) {
+                HStack(alignment: .center) {
                     LocalizedText("vR2-ZU-hgL.title", tableName: .preferences)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     

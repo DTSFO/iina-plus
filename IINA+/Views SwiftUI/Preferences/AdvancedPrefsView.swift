@@ -15,8 +15,8 @@ struct AdvancedPrefsView: View {
     @State var cacheSizeText: String = ""
     
     var body: some View {
-        Grid(alignment: .leadingFirstTextBaseline) {
-            GridRow {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline) {
                 LocalizedText("Rpn-D1-AxI.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
@@ -40,7 +40,7 @@ struct AdvancedPrefsView: View {
             Divider()
                 .padding(.horizontal, -8)
             
-            GridRow(alignment: .center) {
+            HStack(alignment: .center) {
                 LocalizedText("CfS-Ci-nxw.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
@@ -54,8 +54,9 @@ struct AdvancedPrefsView: View {
                     .labelsHidden()
             }
             
-            GridRow(alignment: .center) {
+            HStack(alignment: .center) {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 
                 LocalizedText("Of0-KI-IUP.title", tableName: .preferences)
                 
@@ -67,8 +68,9 @@ struct AdvancedPrefsView: View {
                     .labelsHidden()
             }
             
-            GridRow(alignment: .center) {
+            HStack(alignment: .center) {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 
                 LocalizedText("9Rb-3A-pS4.title", tableName: .preferences)
                 
@@ -80,8 +82,9 @@ struct AdvancedPrefsView: View {
                     .labelsHidden()
             }
             
-            GridRow(alignment: .center) {
+            HStack(alignment: .center) {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 
                 LocalizedText("o7B-lQ-AHT.title", tableName: .preferences)
                 

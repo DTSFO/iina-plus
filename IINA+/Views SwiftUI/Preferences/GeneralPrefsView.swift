@@ -19,7 +19,7 @@ struct GeneralPrefsView: View {
     @State private var pluginButtonTitle: String = ""
     @State private var pluginSheet = false
     
-    private let textWidth: CGFloat = Locale.current.language.languageCode == .chinese ? 55 : 75
+    private let textWidth: CGFloat = (Locale.current.languageCode ?? "").hasPrefix("zh") ? 55 : 75
 
     let portFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -43,8 +43,8 @@ struct GeneralPrefsView: View {
     
 
     var body: some View {
-        Grid(alignment: .leading) {
-            GridRow {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
                 LocalizedText("RGN-E6-zAU.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 Picker("", selection: Binding<LivePlayer>(get: {
@@ -64,8 +64,9 @@ struct GeneralPrefsView: View {
                 .pickerStyle(.segmented)
             }
             
-            GridRow(alignment: .firstTextBaseline) {
+            HStack(alignment: .firstTextBaseline) {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 VStack(alignment: .leading) {
                     if currentPlayer == .mpv {
                         TextField("mpv path", text: .init(get: {
@@ -104,16 +105,18 @@ struct GeneralPrefsView: View {
                 }
             }
             
-            GridRow {
+            HStack {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 Toggle(isOn: $enableFlvjs) {
                     LocalizedText("nYK-y9-7tF.title", tableName: .preferences)
                 }
                 .toggleStyle(.checkbox)
             }
             
-            GridRow {
+            HStack {
                 Spacer()
+                    .frame(maxWidth: .infinity)
                 Toggle(isOn: $autoOpenResult) {
                     LocalizedText("hPC-yj-akr.title", tableName: .preferences)
                 }
@@ -123,7 +126,7 @@ struct GeneralPrefsView: View {
             Divider()
                 .padding(.horizontal, -8)
             
-            GridRow {
+            HStack {
                 LocalizedText("ajR-RS-oZ6.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 Button {
@@ -137,7 +140,7 @@ struct GeneralPrefsView: View {
             Divider()
                 .padding(.horizontal, -8)
             
-            GridRow {
+            HStack {
                 LocalizedText("wRZ-RD-AEu.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 Toggle(isOn: $enableDanmaku) {
@@ -146,7 +149,7 @@ struct GeneralPrefsView: View {
                 .toggleStyle(.switch)
             }
             
-            GridRow(alignment: .firstTextBaseline) {
+            HStack(alignment: .firstTextBaseline) {
                 LocalizedText("BAX-B0-esq.title", tableName: .preferences)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 VStack(alignment: .leading) {
