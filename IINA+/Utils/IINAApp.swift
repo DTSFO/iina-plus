@@ -69,16 +69,10 @@ actor IINAApp {
 		}
 		if version.contains("Danmaku") {
 			return .danmaku
-		} else if version.contains("plugin") {
-			return .plugin
-		} else if build >= minIINABuild {
-			switch pluginState() {
-			case .isDev, .ok(_):
-				return .plugin
-			default:
-				break
-			}
 		}
+		// Always use .normal path to pass real stream URL directly to IINA
+		// The .plugin path relies on the danmaku plugin to replace placeholder URL,
+		// which may not work reliably on all IINA/macOS versions.
 		return .normal
 	}
 	
