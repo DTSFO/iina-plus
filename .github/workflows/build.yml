@@ -46,7 +46,18 @@ jobs:
             -showBuildTimingSummary \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee /tmp/build.log || true
+          
+          # Check if archive was created
+          if [ ! -d "archive/IINA+.xcarchive" ]; then
+            echo "=== BUILD FAILED ==="
+            echo "=== Last 200 lines of build log ==="
+            tail -200 /tmp/build.log
+            echo "=== Error lines ==="
+            grep -i "error:" /tmp/build.log | tail -30
+            exit 1
+          fi
 
       - name: Prepare create-dmg
         run: |
